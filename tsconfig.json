@@ -17,6 +17,7 @@
     "include": [
       "./app/*"
     ],
+    
     "exclude": [
       "node_modules"
     ]
