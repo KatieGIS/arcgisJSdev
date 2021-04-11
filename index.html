@@ -2,7 +2,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
-    <title>ArcGIS JSAPI 4.18 TypeScript Demo</title>
+    <title>Streamflow conditions in BC</title>
     <style>
       html,
       body,
@@ -28,7 +28,15 @@
     <script src="https://js.arcgis.com/4.18"></script>
   </head>
   <body>
-    <div id="viewDiv"></div>
+    <div id="viewDiv">
+      <div
+        id="select-by-polygon"
+        class="esri-widget esri-widget--button esri-widget esri-interactive"
+        title="Select features by polygon"
+      >
+        <span class="esri-icon-checkbox-unchecked"></span>
+      </div>
+    </div>
     <script>require(["app/main"]);</script>
   </body>
 </html>
