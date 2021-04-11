@@ -1,0 +1,13 @@
+{
+  "script": {
+    "dev": "tsc -w",
+    "lint": "tslint './app/*.ts'"
+  },
+  "devDependencies": {
+    "@types/arcgis-js-api": "^4.18.0",
+    "@types/chai": "4.2.1",
+    "dojo-typings": "^1.11.11",
+    "tslint": "^5.16.0",
+    "typescript": "^4.2.4"
+  }
+}
