@@ -8,3 +8,6 @@ And the following step is to install the the ArcGIS API for JavaScript Typings b
 Please run npm to install @types/arcgis-js-api.
 Step-by-step toturial: https://www.esri.com/arcgis-blog/products/js-api-arcgis/mapping/using-typescript-with-the-arcgis-api-for-javascript/
 
+How To compile:
+npm run dev to compile /app/main.ts to main.js in the same folder and watch for changes
+
