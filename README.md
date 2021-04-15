@@ -1,5 +1,4 @@
 
-
 # Installation
 > `npm install -g typescript`
 > `npm install --save @types/arcgis-js-api`
