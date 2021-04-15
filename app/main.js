@@ -64,6 +64,7 @@ define(["require", "exports", "tslib", "esri/Map", "esri/views/MapView", "esri/l
             title: "Streamflow Conditions at <br>{Station_Name}",
             content: "<b>Station ID:</b> {Station_ID}<br><b>Station Name:</b> {Station_Name}<br><b>Current Reading:</b>{Current_Reading_}<br><b>Return Period:</b> {Return_Period}<br><b>Current streamflow discharge as percentage of mean annual discharge </b>{PCT_of_Mean_Ann_Disch_}<br><b>PCT CL: </b>{PCT_CL}<br><b>WSC Real-Time Data: </b><a href={WSC_Real_Time_Data}>Visit Real Time Data</a>"
         });
+        // another popupTemplate if needed.
         var queryPopupTemplate = new PopupTemplate_1.default({
             title: "Streamflow Conditions at <br>{Station_Name}",
             content: "<b>Current Reading:</b>{Current_Reading_}<br><b>Return Period:</b> {Return_Period}<br><b>Current streamflow discharge as percentage of mean annual discharge </b>{PCT_of_Mean_Ann_Disch_}<br><b>PCT CL: </b>{PCT_CL}<br><b>WSC Real-Time Data: </b><a href={WSC_Real_Time_Data}>Visit Real Time Data</a>"
@@ -83,18 +84,8 @@ define(["require", "exports", "tslib", "esri/Map", "esri/views/MapView", "esri/l
                 featureLayerView = layerView;
             });
         })
-            .catch(errorCallback);
-        //var pcl_mean_ann_dis = $feature.{PCT_of_Mean_Ann_Disch_}
-        /* var basemap = new Basemap({
-          baseLayers: [
-            new MapImageLayer({
-              url: "url to your dynamic MapServer",
-              title: "Basemap"
-            })
-          ],
-          title: "basemap",
-          id: "basemap"
-        }); */
+            //Log if promise is rejected
+            .catch(console.log);
         const map = new Map_1.default({
             basemap: "dark-gray",
             layers: [operationalLayer]
@@ -113,7 +104,6 @@ define(["require", "exports", "tslib", "esri/Map", "esri/views/MapView", "esri/l
             layer: tempGraphicsLayer,
             view: view
         });
-        //sketchViewModel.create("polygon", {mode: "freehand"});
         view.ui.add("select-by-polygon", "top-left");
         const selectButton = document.getElementById("select-by-polygon");
         view.graphics.removeAll();
@@ -158,8 +148,5 @@ define(["require", "exports", "tslib", "esri/Map", "esri/views/MapView", "esri/l
         ;
     }
     ;
-    function errorCallback() {
-        console.log("error:", "");
-    }
 });
 //# sourceMappingURL=main.js.map

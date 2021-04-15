@@ -2,14 +2,11 @@ import EsriMap from "esri/Map"
 import MapView from "esri/views/MapView";
 import FeatureLayer from "esri/layers/FeatureLayer";
 import PopupTemplate from "esri/PopupTemplate";
-import Sketch from "esri/widgets/Sketch";
 import GraphicsLayer from "esri/layers/GraphicsLayer";
-import Point from "esri/geometry/Point";
-import Basemap from "esri/Basemap";
-import MapImageLayer from "esri/layers/MapImageLayer";
 import SketchViewModel from "esri/widgets/Sketch/SketchViewModel";
 import Geometry from "esri/geometry/Geometry";
 import Graphic from "esri/Graphic";
+import { reject } from "esri/core/promiseUtils";
 
 
 
@@ -77,6 +74,7 @@ function initialMapView() {
     content: "<b>Station ID:</b> {Station_ID}<br><b>Station Name:</b> {Station_Name}<br><b>Current Reading:</b>{Current_Reading_}<br><b>Return Period:</b> {Return_Period}<br><b>Current streamflow discharge as percentage of mean annual discharge </b>{PCT_of_Mean_Ann_Disch_}<br><b>PCT CL: </b>{PCT_CL}<br><b>WSC Real-Time Data: </b><a href={WSC_Real_Time_Data}>Visit Real Time Data</a>"
   })
 
+  // another popupTemplate if needed.
   var queryPopupTemplate = new PopupTemplate({
     title: "Streamflow Conditions at <br>{Station_Name}",
     content: "<b>Current Reading:</b>{Current_Reading_}<br><b>Return Period:</b> {Return_Period}<br><b>Current streamflow discharge as percentage of mean annual discharge </b>{PCT_of_Mean_Ann_Disch_}<br><b>PCT CL: </b>{PCT_CL}<br><b>WSC Real-Time Data: </b><a href={WSC_Real_Time_Data}>Visit Real Time Data</a>"
@@ -99,21 +97,10 @@ function initialMapView() {
         featureLayerView = layerView;
       })
     })
-    .catch(errorCallback)
+    //Log if promise is rejected
+    .catch(console.log)
     
     
-  //var pcl_mean_ann_dis = $feature.{PCT_of_Mean_Ann_Disch_}
-
-  /* var basemap = new Basemap({
-    baseLayers: [
-      new MapImageLayer({
-        url: "url to your dynamic MapServer",
-        title: "Basemap"
-      })
-    ],
-    title: "basemap",
-    id: "basemap"
-  }); */
   
   const map = new EsriMap({
     basemap: "dark-gray",
@@ -137,16 +124,16 @@ function initialMapView() {
     view: view
   });
 
-  //sketchViewModel.create("polygon", {mode: "freehand"});
+ 
   view.ui.add("select-by-polygon", "top-left");
   const selectButton = document.getElementById("select-by-polygon");
   view.graphics.removeAll();
   // click event for the button
   selectButton.addEventListener("click", function () {
         
-  view.popup.close();
-  // ready to draw a polygon
-  sketchViewModel.create("polygon", {mode: "freehand"});
+    view.popup.close();
+    // ready to draw a polygon
+    sketchViewModel.create("polygon", {mode: "freehand"});
       });
 
   sketchViewModel.on("create", function(event){
@@ -190,6 +177,4 @@ function initialMapView() {
       });
   };
 };
-function errorCallback() {
-  console.log("error:", "");
-}
+
